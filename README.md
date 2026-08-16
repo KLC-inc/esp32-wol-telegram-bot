@@ -62,9 +62,12 @@ If you need to force the board to reconfigure to a different network while the o
 For the `/sleep` command to work, the `wol_sleep_listener_en.pyw` Python script must be running on your computer.
 
 **Important note about network adapters:**
-In older versions of the script, you had to manually specify the network adapter name (the default was `'Ethernet'`). 
-However, **the current version of the script is Zero-Config (requires no setup)**. It uses the `psutil` library to automatically scan your system, find *all* available network adapters and their MAC addresses, and listens for incoming commands universally on `0.0.0.0`. 
-You **do not** need to change anything in the script when switching your connection method (e.g., from Ethernet cable to Wi-Fi).
+Open the `wol_sleep_listener_en.pyw` file in any text editor. At the very top, you will find the line:
+`INTERFACE_NAME = 'Ethernet'`
+
+- If your PC is connected to the internet via **cable**, you likely don't need to change anything (the standard name in Windows is "Ethernet").
+- If you use **Wi-Fi**, change this line to: `INTERFACE_NAME = 'Wi-Fi'`.
+*(If the script throws an error, you can check the exact name of your adapter in Windows: "Control Panel" -> "Network and Sharing Center" -> "Change adapter settings").*
 
 **How to run it:**
 1. Install Python and the required library: `pip install psutil`
